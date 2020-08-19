@@ -6,6 +6,8 @@
 
 GitHub Action to install [QEMU static binaries](https://github.com/multiarch/qemu-user-static).
 
+![Screenshot](.github/setup-qemu-action.png)
+
 ___
 
 * [Usage](#usage)
