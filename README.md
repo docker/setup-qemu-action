@@ -39,7 +39,7 @@ jobs:
       -
         name: Set up QEMU
         id: qemu
-        uses: docker/setup-qemu-action@master
+        uses: docker/setup-qemu-action@v1
         with:
           image: tonistiigi/binfmt:latest
           platforms: all
