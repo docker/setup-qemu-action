@@ -103,9 +103,13 @@ function run() {
             }
             const image = core.getInput('image') || 'tonistiigi/binfmt:latest';
             const platforms = core.getInput('platforms') || 'all';
-            core.info(`💎 Installing QEMU static binaries...`);
+            core.startGroup(`Pulling binfmt Docker image`);
+            yield exec.exec('docker', ['pull', image]);
+            core.endGroup();
+            core.startGroup(`Installing QEMU static binaries`);
             yield exec.exec('docker', ['run', '--rm', '--privileged', image, '--install', platforms]);
-            core.info('🛒 Extracting available platforms...');
+            core.endGroup();
+            core.startGroup(`Extracting available platforms`);
             yield mexec.exec(`docker`, ['run', '--rm', '--privileged', image], true).then(res => {
                 if (res.stderr != '' && !res.success) {
                     throw new Error(res.stderr);
@@ -114,6 +118,7 @@ function run() {
                 core.info(`${platforms.supported.join(',')}`);
                 core.setOutput('platforms', platforms.supported.join(','));
             });
+            core.endGroup();
         }
         catch (error) {
             core.setFailed(error.message);
