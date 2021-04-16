@@ -1,4 +1,3 @@
-import * as os from 'os';
 import * as mexec from './exec';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
@@ -10,10 +9,10 @@ interface Platforms {
 
 async function run(): Promise<void> {
   try {
-    if (os.platform() !== 'linux') {
-      core.setFailed('Only supported on linux platform');
-      return;
-    }
+    core.startGroup(`Docker info`);
+    await exec.exec('docker', ['version']);
+    await exec.exec('docker', ['info']);
+    core.endGroup();
 
     const image: string = core.getInput('image') || 'tonistiigi/binfmt:latest';
     const platforms: string = core.getInput('platforms') || 'all';

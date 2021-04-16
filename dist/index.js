@@ -90,17 +90,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const os = __importStar(__webpack_require__(87));
 const mexec = __importStar(__webpack_require__(757));
 const core = __importStar(__webpack_require__(186));
 const exec = __importStar(__webpack_require__(514));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            if (os.platform() !== 'linux') {
-                core.setFailed('Only supported on linux platform');
-                return;
-            }
+            core.startGroup(`Docker info`);
+            yield exec.exec('docker', ['version']);
+            yield exec.exec('docker', ['info']);
+            core.endGroup();
             const image = core.getInput('image') || 'tonistiigi/binfmt:latest';
             const platforms = core.getInput('platforms') || 'all';
             core.startGroup(`Pulling binfmt Docker image`);
