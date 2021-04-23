@@ -93,6 +93,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mexec = __importStar(__webpack_require__(757));
 const core = __importStar(__webpack_require__(186));
 const exec = __importStar(__webpack_require__(514));
+const command_1 = __webpack_require__(241);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -115,7 +116,7 @@ function run() {
                 }
                 const platforms = JSON.parse(res.stdout.trim());
                 core.info(`${platforms.supported.join(',')}`);
-                core.setOutput('platforms', platforms.supported.join(','));
+                setOutput('platforms', platforms.supported.join(','));
             });
             core.endGroup();
         }
@@ -123,6 +124,10 @@ function run() {
             core.setFailed(error.message);
         }
     });
+}
+// FIXME: Temp fix https://github.com/actions/toolkit/issues/777
+function setOutput(name, value) {
+    command_1.issueCommand('set-output', { name }, value);
 }
 run();
 //# sourceMappingURL=main.js.map

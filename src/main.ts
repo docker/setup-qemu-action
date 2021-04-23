@@ -1,6 +1,7 @@
 import * as mexec from './exec';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import {issueCommand} from '@actions/core/lib/command';
 
 interface Platforms {
   supported: string[];
@@ -32,12 +33,17 @@ async function run(): Promise<void> {
       }
       const platforms: Platforms = JSON.parse(res.stdout.trim());
       core.info(`${platforms.supported.join(',')}`);
-      core.setOutput('platforms', platforms.supported.join(','));
+      setOutput('platforms', platforms.supported.join(','));
     });
     core.endGroup();
   } catch (error) {
     core.setFailed(error.message);
   }
+}
+
+// FIXME: Temp fix https://github.com/actions/toolkit/issues/777
+function setOutput(name: string, value: any): void {
+  issueCommand('set-output', {name}, value);
 }
 
 run();
