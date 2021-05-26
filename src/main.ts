@@ -22,6 +22,10 @@ async function run(): Promise<void> {
     await exec.exec('docker', ['pull', image]);
     core.endGroup();
 
+    core.startGroup(`Image info`);
+    await exec.exec('docker', ['image', 'inspect', image]);
+    core.endGroup();
+
     core.startGroup(`Installing QEMU static binaries`);
     await exec.exec('docker', ['run', '--rm', '--privileged', image, '--install', platforms]);
     core.endGroup();
