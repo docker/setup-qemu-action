@@ -4,12 +4,7 @@
 
 ## About
 
-GitHub Action to install [QEMU static binaries](https://github.com/multiarch/qemu-user-static).
-
-> :bulb: See also:
-> * [login](https://github.com/docker/login-action) action
-> * [setup-buildx](https://github.com/docker/setup-buildx-action) action
-> * [build-push](https://github.com/docker/build-push-action) action
+GitHub Action to install [QEMU](https://github.com/qemu/qemu) static binaries.
 
 ![Screenshot](.github/setup-qemu-action.png)
 

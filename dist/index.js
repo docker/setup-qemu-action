@@ -106,6 +106,9 @@ function run() {
             core.startGroup(`Pulling binfmt Docker image`);
             yield exec.exec('docker', ['pull', image]);
             core.endGroup();
+            core.startGroup(`Image info`);
+            yield exec.exec('docker', ['image', 'inspect', image]);
+            core.endGroup();
             core.startGroup(`Installing QEMU static binaries`);
             yield exec.exec('docker', ['run', '--rm', '--privileged', image, '--install', platforms]);
             core.endGroup();
