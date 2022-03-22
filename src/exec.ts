@@ -8,8 +8,8 @@ export interface ExecResult {
 }
 
 export const exec = async (command: string, args: string[] = [], silent: boolean): Promise<ExecResult> => {
-  let stdout: string = '';
-  let stderr: string = '';
+  let stdout = '';
+  let stderr = '';
 
   const options: ExecOptions = {
     silent: silent,
