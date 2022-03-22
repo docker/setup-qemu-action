@@ -2,17 +2,16 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "lib": [
-      "es6",
-      "dom"
-    ],
     "newLine": "lf",
     "outDir": "./lib",
     "rootDir": "./src",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": false,
-    "esModuleInterop": true,
-    "sourceMap": true
+    "useUnknownInCatchVariables": false,
   },
-  "exclude": ["node_modules", "**/*.test.ts"]
+  "exclude": [
+    "node_modules"
+  ]
 }

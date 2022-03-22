@@ -46,7 +46,7 @@ async function run(): Promise<void> {
 }
 
 // FIXME: Temp fix https://github.com/actions/toolkit/issues/777
-function setOutput(name: string, value: any): void {
+function setOutput(name: string, value: unknown): void {
   issueCommand('set-output', {name}, value);
 }
 

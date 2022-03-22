@@ -3,10 +3,10 @@
   "description": "Install QEMU static binaries",
   "main": "lib/main.js",
   "scripts": {
-    "build": "tsc && ncc build",
-    "format": "prettier --write **/*.ts",
-    "format-check": "prettier --check **/*.ts",
-    "pre-checkin": "yarn run format && yarn run build"
+    "build": "ncc build src/main.ts --source-map --minify --license licenses.txt",
+    "lint": "eslint src/**/*.ts",
+    "format": "eslint --fix src/**/*.ts",
+    "all": "yarn run build && yarn run format"
   },
   "repository": {
     "type": "git",
@@ -30,10 +30,15 @@
     "@actions/exec": "^1.1.1"
   },
   "devDependencies": {
-    "@types/node": "^14.0.14",
-    "@vercel/ncc": "^0.23.0",
-    "prettier": "^2.0.5",
-    "typescript": "^3.9.5",
-    "typescript-formatter": "^7.2.2"
+    "@types/node": "^16.11.26",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "@vercel/ncc": "^0.33.3",
+    "eslint": "^8.11.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.3.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.4.4"
   }
 }
