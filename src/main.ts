@@ -44,7 +44,7 @@ async function run(): Promise<void> {
           }
           const platforms: Platforms = JSON.parse(res.stdout.trim());
           core.info(`${platforms.supported.join(',')}`);
-          context.setOutput('platforms', platforms.supported.join(','));
+          core.setOutput('platforms', platforms.supported.join(','));
         });
     });
   } catch (error) {
