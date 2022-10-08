@@ -39,18 +39,19 @@ jobs:
 
 Following inputs can be used as `step.with` keys
 
-| Name        | Type   | Description                                                                                                               |
-|-------------|--------|---------------------------------------------------------------------------------------------------------------------------|
-| `image`     | String | QEMU static binaries Docker image (default [`tonistiigi/binfmt:latest`](https://hub.docker.com/r/tonistiigi/binfmt/tags)) |
-| `platforms` | String | Platforms to install (e.g. `arm64,riscv64,arm` ; default `all`)                                                           |
+| Name        | Type   | Default                                                                       | Description                                     |
+|-------------|--------|-------------------------------------------------------------------------------|-------------------------------------------------|
+| `image`     | String | [`tonistiigi/binfmt:latest`](https://hub.docker.com/r/tonistiigi/binfmt/tags) | QEMU static binaries Docker image               |
+| `platforms` | String | `all`                                                                         | Platforms to install                            |
+| `reset`     | Bool   | `false`                                                                       | Uninstall current emulators before installation |
 
 ### outputs
 
 Following outputs are available
 
-| Name          | Type    | Description                           |
-|---------------|---------|---------------------------------------|
-| `platforms`   | String  | Available platforms (comma separated) |
+| Name        | Type    | Description                           |
+|-------------|---------|---------------------------------------|
+| `platforms` | String  | Available platforms (comma separated) |
 
 ## Contributing
 
