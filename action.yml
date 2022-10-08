@@ -15,6 +15,10 @@ inputs:
     description: 'Platforms to install (e.g. arm64,riscv64,arm)'
     default: 'all'
     required: false
+  reset:
+    description: 'Uninstall current emulators before installation'
+    default: 'false'
+    required: false
 
 outputs:
   platforms:

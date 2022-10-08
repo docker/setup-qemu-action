@@ -2,7 +2,7 @@ name: ci
 
 on:
   schedule:
-    - cron: '0 10 * * *' # everyday at 10am
+    - cron: '0 10 * * *'
   push:
     branches:
       - 'master'
@@ -40,9 +40,6 @@ jobs:
       -
         name: Available platforms
         run: echo ${{ steps.qemu.outputs.platforms }}
-      -
-        name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
 
   error:
     runs-on: ubuntu-latest
@@ -67,7 +64,23 @@ jobs:
             echo "::error::Should have failed"
             exit 1
           fi
+
+  reset:
+    runs-on: ubuntu-latest
+    steps:
       -
-        name: Dump context
-        if: always()
-        uses: crazy-max/ghaction-dump-context@v1
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Install multiarch/qemu-user-static
+        run: |
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes -c yes
+      -
+        name: Set up QEMU
+        id: qemu
+        uses: ./
+        with:
+          reset: true
+      -
+        name: Available platforms
+        run: echo ${{ steps.qemu.outputs.platforms }}

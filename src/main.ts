@@ -24,6 +24,12 @@ async function run(): Promise<void> {
       await exec.exec('docker', ['pull', input.image]);
     });
 
+    if (input.reset) {
+      await core.group(`Uninstalling current emulators`, async () => {
+        await exec.exec('docker', ['run', '--rm', '--privileged', input.image, '--uninstall', 'qemu-*']);
+      });
+    }
+
     await core.group(`Image info`, async () => {
       await exec.exec('docker', ['image', 'inspect', input.image]);
     });
