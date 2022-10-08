@@ -1,4 +1,3 @@
-import * as mexec from './exec';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import {issueCommand} from '@actions/core/lib/command';
@@ -31,14 +30,19 @@ async function run(): Promise<void> {
     core.endGroup();
 
     core.startGroup(`Extracting available platforms`);
-    await mexec.exec(`docker`, ['run', '--rm', '--privileged', image], true).then(res => {
-      if (res.stderr != '' && !res.success) {
-        throw new Error(res.stderr);
-      }
-      const platforms: Platforms = JSON.parse(res.stdout.trim());
-      core.info(`${platforms.supported.join(',')}`);
-      setOutput('platforms', platforms.supported.join(','));
-    });
+    await exec
+      .getExecOutput('docker', ['run', '--rm', '--privileged', image], {
+        ignoreReturnCode: true,
+        silent: true
+      })
+      .then(res => {
+        if (res.stderr.length > 0 && res.exitCode != 0) {
+          throw new Error(res.stderr.trim());
+        }
+        const platforms: Platforms = JSON.parse(res.stdout.trim());
+        core.info(`${platforms.supported.join(',')}`);
+        setOutput('platforms', platforms.supported.join(','));
+      });
     core.endGroup();
   } catch (error) {
     core.setFailed(error.message);
