@@ -13,6 +13,7 @@ ___
 * [Usage](#usage)
 * [Customizing](#customizing)
   * [inputs](#inputs)
+  * [outputs](#outputs)
 * [Contributing](#contributing)
 
 ## Usage
