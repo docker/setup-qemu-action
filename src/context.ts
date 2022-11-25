@@ -8,6 +8,11 @@ export interface Inputs {
 export function getInputs(): Inputs {
   return {
     image: core.getInput('image') || 'tonistiigi/binfmt:latest',
-    platforms: core.getInput('platforms') || 'all'
+    platforms:
+      core
+        .getInput('platforms')
+        .split(',')
+        .map(v => v.trim())
+        .join(',') || 'all'
   };
 }
