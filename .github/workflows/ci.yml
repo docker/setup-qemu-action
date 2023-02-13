@@ -42,7 +42,7 @@ jobs:
         run: echo ${{ steps.qemu.outputs.platforms }}
       -
         name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v2
 
   error:
     runs-on: ubuntu-latest
@@ -70,4 +70,4 @@ jobs:
       -
         name: Dump context
         if: always()
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v2
