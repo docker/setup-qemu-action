@@ -1,4 +1,5 @@
 import * as core from '@actions/core';
+import {Util} from '@docker/actions-toolkit/lib/util';
 
 export interface Inputs {
   image: string;
@@ -8,11 +9,6 @@ export interface Inputs {
 export function getInputs(): Inputs {
   return {
     image: core.getInput('image') || 'tonistiigi/binfmt:latest',
-    platforms:
-      core
-        .getInput('platforms')
-        .split(',')
-        .map(v => v.trim())
-        .join(',') || 'all'
+    platforms: Util.getInputList('platforms').join(',') || 'all'
   };
 }
