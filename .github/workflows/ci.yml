@@ -2,7 +2,7 @@ name: ci
 
 on:
   schedule:
-    - cron: '0 10 * * *' # everyday at 10am
+    - cron: '0 10 * * *'
   push:
     branches:
       - 'master'
@@ -10,9 +10,6 @@ on:
     tags:
       - 'v*'
   pull_request:
-    branches:
-      - 'master'
-      - 'releases/v*'
 
 jobs:
   main:
@@ -40,9 +37,6 @@ jobs:
       -
         name: Available platforms
         run: echo ${{ steps.qemu.outputs.platforms }}
-      -
-        name: Dump context
-        uses: crazy-max/ghaction-dump-context@v1
 
   error:
     runs-on: ubuntu-latest
@@ -67,7 +61,3 @@ jobs:
             echo "::error::Should have failed"
             exit 1
           fi
-      -
-        name: Dump context
-        if: always()
-        uses: crazy-max/ghaction-dump-context@v1
