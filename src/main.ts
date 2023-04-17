@@ -1,7 +1,7 @@
 import * as context from './context';
 import * as core from '@actions/core';
 import * as actionsToolkit from '@docker/actions-toolkit';
-import {Docker} from '@docker/actions-toolkit/lib/docker';
+import {Docker} from '@docker/actions-toolkit/lib/docker/docker';
 import {Exec} from '@docker/actions-toolkit/lib/exec';
 
 interface Platforms {
