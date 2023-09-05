@@ -47,7 +47,7 @@ jobs:
       -
         name: Stop docker
         run: |
-          sudo systemctl stop docker
+          sudo systemctl stop docker docker.socket
       -
         name: Set up QEMU
         id: qemu
