@@ -32,14 +32,14 @@ jobs:
     steps:
       -
         name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
 ```
 
 ## Customizing
 
 ### inputs
 
-Following inputs can be used as `step.with` keys
+The following inputs can be used as `step.with` keys:
 
 | Name        | Type   | Default                                                                       | Description                                      |
 |-------------|--------|-------------------------------------------------------------------------------|--------------------------------------------------|
@@ -48,7 +48,7 @@ Following inputs can be used as `step.with` keys
 
 ### outputs
 
-Following outputs are available
+The following outputs are available:
 
 | Name          | Type    | Description                           |
 |---------------|---------|---------------------------------------|
