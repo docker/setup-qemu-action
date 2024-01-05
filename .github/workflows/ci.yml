@@ -65,3 +65,39 @@ jobs:
             echo "::error::Should have failed"
             exit 1
           fi
+
+  version:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - ubuntu-22.04
+          - ubuntu-20.04
+        install:
+          - true
+          - false
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Install QEMU
+        if: ${{ matrix.install }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-user-static
+      -
+        name: QEMU bins
+        run: |
+          echo $PATH | tr ':' '\n' | xargs -I {} find {} -type f -executable -name "qemu*" || true
+          dpkg -l | grep '^ii' | grep 'qemu' || true
+      -
+        name: Set up QEMU
+        uses: ./
+      -
+        name: QEMU bins
+        run: |
+          echo $PATH | tr ':' '\n' | xargs -I {} find {} -type f -executable -name "qemu*" || true
+          dpkg -l | grep '^ii' | grep 'qemu' || true
