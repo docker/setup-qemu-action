@@ -1,4 +1,5 @@
 import * as context from './context';
+import * as qemu from './qemu';
 import * as core from '@actions/core';
 import * as actionsToolkit from '@docker/actions-toolkit';
 import {Docker} from '@docker/actions-toolkit/lib/docker/docker';
@@ -13,6 +14,14 @@ actionsToolkit.run(
   // main
   async () => {
     const input: context.Inputs = context.getInputs();
+
+    await core.group('QEMU version', async () => {
+      if (await qemu.isInstalled()) {
+        await qemu.printVersion();
+      } else {
+        core.warning('QEMU is not installed');
+      }
+    });
 
     await core.group(`Docker info`, async () => {
       await Docker.printVersion();
