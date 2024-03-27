@@ -20,7 +20,11 @@ actionsToolkit.run(
     });
 
     await core.group(`Pulling binfmt Docker image`, async () => {
-      await Exec.exec('docker', ['pull', input.image]);
+      await Exec.getExecOutput('docker', ['pull', input.image]).then(res => {
+        if (res.stderr.length > 0 && res.exitCode != 0) {
+          throw new Error(`cannot pull binfmt image: ${res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error'}`);
+        }
+      });
     });
 
     await core.group(`Image info`, async () => {
