@@ -20,7 +20,7 @@ actionsToolkit.run(
     });
 
     await core.group(`Pulling binfmt Docker image`, async () => {
-      await Exec.exec('docker', ['pull', input.image]);
+      await Docker.pull(input.image, input.cacheImage);
     });
 
     await core.group(`Image info`, async () => {
