@@ -20,15 +20,33 @@ actionsToolkit.run(
     });
 
     await core.group(`Pulling binfmt Docker image`, async () => {
-      await Exec.exec('docker', ['pull', input.image]);
+      await Exec.getExecOutput('docker', ['pull', input.image], {
+        ignoreReturnCode: true
+      }).then(res => {
+        if (res.stderr.length > 0 && res.exitCode != 0) {
+          throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
+        }
+      });
     });
 
     await core.group(`Image info`, async () => {
-      await Exec.exec('docker', ['image', 'inspect', input.image]);
+      await Exec.getExecOutput('docker', ['image', 'inspect', input.image], {
+        ignoreReturnCode: true
+      }).then(res => {
+        if (res.stderr.length > 0 && res.exitCode != 0) {
+          throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
+        }
+      });
     });
 
     await core.group(`Installing QEMU static binaries`, async () => {
-      await Exec.exec('docker', ['run', '--rm', '--privileged', input.image, '--install', input.platforms]);
+      await Exec.getExecOutput('docker', ['run', '--rm', '--privileged', input.image, '--install', input.platforms], {
+        ignoreReturnCode: true
+      }).then(res => {
+        if (res.stderr.length > 0 && res.exitCode != 0) {
+          throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
+        }
+      });
     });
 
     await core.group(`Extracting available platforms`, async () => {
@@ -37,7 +55,7 @@ actionsToolkit.run(
         silent: true
       }).then(res => {
         if (res.stderr.length > 0 && res.exitCode != 0) {
-          throw new Error(res.stderr.trim());
+          throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
         }
         const platforms: Platforms = JSON.parse(res.stdout.trim());
         core.info(`${platforms.supported.join(',')}`);
