@@ -16,10 +16,13 @@ describe('getInputs', () => {
   test.each([
     [
       0,
-      new Map<string, string>([]),
+      new Map<string, string>([
+        ['cache-image', 'true'],
+      ]),
       {
         image: 'docker.io/tonistiigi/binfmt:latest',
         platforms: 'all',
+        cacheImage: true,
       } as context.Inputs
     ],
     [
@@ -27,20 +30,24 @@ describe('getInputs', () => {
       new Map<string, string>([
         ['image', 'docker/binfmt:latest'],
         ['platforms', 'arm64,riscv64,arm'],
+        ['cache-image', 'false'],
       ]),
       {
         image: 'docker/binfmt:latest',
         platforms: 'arm64,riscv64,arm',
+        cacheImage: false,
       } as context.Inputs
     ],
     [
       2,
       new Map<string, string>([
         ['platforms', 'arm64, riscv64, arm '],
+        ['cache-image', 'true'],
       ]),
       {
         image: 'docker.io/tonistiigi/binfmt:latest',
         platforms: 'arm64,riscv64,arm',
+        cacheImage: true,
       } as context.Inputs
     ]
   ])(
