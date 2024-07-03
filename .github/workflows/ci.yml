@@ -16,6 +16,20 @@ on:
   pull_request:
 
 jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Set up QEMU
+        id: qemu
+        uses: ./
+      -
+        name: Available platforms
+        run: echo ${{ steps.qemu.outputs.platforms }}
+
   main:
     runs-on: ubuntu-latest
     strategy:

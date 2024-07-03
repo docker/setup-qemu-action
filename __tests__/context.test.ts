@@ -18,7 +18,7 @@ describe('getInputs', () => {
       0,
       new Map<string, string>([]),
       {
-        image: 'tonistiigi/binfmt:latest',
+        image: 'docker.io/tonistiigi/binfmt:latest',
         platforms: 'all',
       } as context.Inputs
     ],
@@ -39,7 +39,7 @@ describe('getInputs', () => {
         ['platforms', 'arm64, riscv64, arm '],
       ]),
       {
-        image: 'tonistiigi/binfmt:latest',
+        image: 'docker.io/tonistiigi/binfmt:latest',
         platforms: 'arm64,riscv64,arm',
       } as context.Inputs
     ]
