@@ -79,3 +79,26 @@ jobs:
             echo "::error::Should have failed"
             exit 1
           fi
+
+  cache-image:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        cache:
+          - true
+          - false
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Set up QEMU
+        id: qemu
+        uses: ./
+        with:
+          image: tonistiigi/binfmt:master
+          cache-image: ${{ matrix.cache }}
+      -
+        name: Available platforms
+        run: echo ${{ steps.qemu.outputs.platforms }}

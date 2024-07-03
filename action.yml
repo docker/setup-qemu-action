@@ -15,6 +15,10 @@ inputs:
     description: 'Platforms to install (e.g. arm64,riscv64,arm)'
     default: 'all'
     required: false
+  cache-image:
+    description: 'Cache binfmt image to GitHub Actions cache backend'
+    default: 'true'
+    required: false
 
 outputs:
   platforms:
@@ -23,3 +27,4 @@ outputs:
 runs:
   using: 'node20'
   main: 'dist/index.js'
+  post: 'dist/index.js'
