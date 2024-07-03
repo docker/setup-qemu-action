@@ -8,7 +8,7 @@ export interface Inputs {
 
 export function getInputs(): Inputs {
   return {
-    image: core.getInput('image') || 'tonistiigi/binfmt:latest',
+    image: core.getInput('image') || 'docker.io/tonistiigi/binfmt:latest',
     platforms: Util.getInputList('platforms').join(',') || 'all'
   };
 }
