@@ -1,8 +1,8 @@
 import * as context from './context';
 import * as core from '@actions/core';
 import * as actionsToolkit from '@docker/actions-toolkit';
+
 import {Docker} from '@docker/actions-toolkit/lib/docker/docker';
-import {Exec} from '@docker/actions-toolkit/lib/exec';
 
 interface Platforms {
   supported: string[];
@@ -20,7 +20,7 @@ actionsToolkit.run(
     });
 
     await core.group(`Pulling binfmt Docker image`, async () => {
-      await Exec.getExecOutput('docker', ['pull', input.image], {
+      await Docker.getExecOutput(['pull', input.image], {
         ignoreReturnCode: true
       }).then(res => {
         if (res.stderr.length > 0 && res.exitCode != 0) {
@@ -30,7 +30,7 @@ actionsToolkit.run(
     });
 
     await core.group(`Image info`, async () => {
-      await Exec.getExecOutput('docker', ['image', 'inspect', input.image], {
+      await Docker.getExecOutput(['image', 'inspect', input.image], {
         ignoreReturnCode: true
       }).then(res => {
         if (res.stderr.length > 0 && res.exitCode != 0) {
@@ -40,7 +40,7 @@ actionsToolkit.run(
     });
 
     await core.group(`Installing QEMU static binaries`, async () => {
-      await Exec.getExecOutput('docker', ['run', '--rm', '--privileged', input.image, '--install', input.platforms], {
+      await Docker.getExecOutput(['run', '--rm', '--privileged', input.image, '--install', input.platforms], {
         ignoreReturnCode: true
       }).then(res => {
         if (res.stderr.length > 0 && res.exitCode != 0) {
@@ -50,7 +50,7 @@ actionsToolkit.run(
     });
 
     await core.group(`Extracting available platforms`, async () => {
-      await Exec.getExecOutput('docker', ['run', '--rm', '--privileged', input.image], {
+      await Docker.getExecOutput(['run', '--rm', '--privileged', input.image], {
         ignoreReturnCode: true,
         silent: true
       }).then(res => {
