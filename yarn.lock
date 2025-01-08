@@ -12,9 +12,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/artifact@npm:^2.1.8":
-  version: 2.1.8
-  resolution: "@actions/artifact@npm:2.1.8"
+"@actions/artifact@npm:^2.1.11":
+  version: 2.2.0
+  resolution: "@actions/artifact@npm:2.2.0"
   dependencies:
     "@actions/core": ^1.10.0
     "@actions/github": ^5.1.1
@@ -26,19 +26,18 @@ __metadata:
     "@octokit/request-error": ^5.0.0
     "@protobuf-ts/plugin": ^2.2.3-alpha.1
     archiver: ^7.0.1
-    crypto: ^1.0.1
     jwt-decode: ^3.1.2
     twirp-ts: ^2.5.0
     unzip-stream: ^0.3.1
-  checksum: 51a47c21bcdac705abb61dbaef923f2760354c39bcad44a31b129e18bf31f646e5148f92ee7e1198275d1dba7bebfd1d1500ad7f62f6de1e65b57b2d092d5341
+  checksum: 9a32bdf418094fc17ab663f330305a1940ef1ba84b2d747bcd5fe4505b66cd892de536cb4d86405a7b524ca58793bf68e48247da06a7c043bc64e5ee15739e1e
   languageName: node
   linkType: hard
 
-"@actions/cache@npm:^3.2.4":
-  version: 3.2.4
-  resolution: "@actions/cache@npm:3.2.4"
+"@actions/cache@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "@actions/cache@npm:3.3.0"
   dependencies:
-    "@actions/core": ^1.10.0
+    "@actions/core": ^1.11.1
     "@actions/exec": ^1.0.1
     "@actions/glob": ^0.1.0
     "@actions/http-client": ^2.1.1
@@ -47,12 +46,11 @@ __metadata:
     "@azure/ms-rest-js": ^2.6.0
     "@azure/storage-blob": ^12.13.0
     semver: ^6.3.1
-    uuid: ^3.3.3
-  checksum: 5bf5f7541bea4906b553440a9ffee5699e11dfb729365c6cb0bbd37e147a1a0993369fdad16bfa3e2b01ec7fa57dac66276278bfd4a389009246a75ea953e61d
+  checksum: f0761b1491b7706a80b44d68ed52eb48c04653fc939525a7c7b606e9d9251c40c7e4ac20846ab92ac32db6869e1a6f0f574bd6b7fec1ab9378c8e199c5acc9c9
   languageName: node
   linkType: hard
 
-"@actions/core@npm:^1.10.0, @actions/core@npm:^1.10.1, @actions/core@npm:^1.2.6":
+"@actions/core@npm:^1.10.0, @actions/core@npm:^1.2.6":
   version: 1.10.1
   resolution: "@actions/core@npm:1.10.1"
   dependencies:
@@ -115,13 +113,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/http-client@npm:^2.0.1, @actions/http-client@npm:^2.1.0, @actions/http-client@npm:^2.1.1, @actions/http-client@npm:^2.2.0, @actions/http-client@npm:^2.2.1":
+"@actions/http-client@npm:^2.0.1, @actions/http-client@npm:^2.1.0, @actions/http-client@npm:^2.1.1, @actions/http-client@npm:^2.2.0":
   version: 2.2.1
   resolution: "@actions/http-client@npm:2.2.1"
   dependencies:
     tunnel: ^0.0.6
     undici: ^5.25.4
   checksum: c51c003cd697289136c0e81c0f9b8e57a9bb1a038dc7c9a91a71c02f4ae5e27ef7d3e305aefa7c815604049209d114c06e9991a5c5eaa055508519329267f962
+  languageName: node
+  linkType: hard
+
+"@actions/http-client@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "@actions/http-client@npm:2.2.3"
+  dependencies:
+    tunnel: ^0.0.6
+    undici: ^5.25.4
+  checksum: 5d395df575d30ae599efa10dd715e72944b015e753db61f0a823f737acbb0e99743d4a9f25e812b18ec8cc34f86c73565d075c449e01ffa891577b6595212dde
   languageName: node
   linkType: hard
 
@@ -948,23 +956,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docker/actions-toolkit@npm:^0.35.0":
-  version: 0.35.0
-  resolution: "@docker/actions-toolkit@npm:0.35.0"
+"@docker/actions-toolkit@npm:^0.49.0":
+  version: 0.49.0
+  resolution: "@docker/actions-toolkit@npm:0.49.0"
   dependencies:
-    "@actions/artifact": ^2.1.8
-    "@actions/cache": ^3.2.4
-    "@actions/core": ^1.10.1
+    "@actions/artifact": ^2.1.11
+    "@actions/cache": ^3.3.0
+    "@actions/core": ^1.11.1
     "@actions/exec": ^1.1.1
     "@actions/github": ^6.0.0
-    "@actions/http-client": ^2.2.1
+    "@actions/http-client": ^2.2.3
     "@actions/io": ^1.1.3
     "@actions/tool-cache": ^2.0.1
     "@azure/storage-blob": ^12.15.0
     "@octokit/core": ^5.1.0
     "@octokit/plugin-rest-endpoint-methods": ^10.4.0
     async-retry: ^1.3.3
-    csv-parse: ^5.5.6
+    csv-parse: ^5.6.0
     gunzip-maybe: ^1.4.2
     handlebars: ^4.7.8
     he: ^1.2.0
@@ -973,7 +981,7 @@ __metadata:
     semver: ^7.6.3
     tar-stream: ^3.1.7
     tmp: ^0.2.3
-  checksum: 27fa4a500e94beff376bc322cc1074c82b20f6ceb0104c43ed5efc613763c8b7ea37b231c32c4dfcb5f7ce8a14948eecc799aa363d60d11d848466d5718d63f0
+  checksum: 5e945601180002f129f095bba2d7d938b5ca69e87631d5e96a0d3b2254a8b034ab4bafbf7582ea82995e39610ad00fd68b34ab5875b9b314690328f714ad79d0
   languageName: node
   linkType: hard
 
@@ -2915,17 +2923,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"crypto@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "crypto@npm:1.0.1"
-  checksum: 087fe3165bd94c333a49e6ed66a0193911f63eac38a24f379b3001a5fe260a59c413646e53a0f67875ba13902b2686d81dc703cb2c147a4ec727dcdc04e5645e
-  languageName: node
-  linkType: hard
-
-"csv-parse@npm:^5.5.6":
-  version: 5.5.6
-  resolution: "csv-parse@npm:5.5.6"
-  checksum: ee06f97f674487dc1d001b360de8ea510a41b9d971abf43bcf9c3be22c83a3634df0d3ebfbe52fd49d145077066be7ff9f25de3fc6b71aefb973099b04147a25
+"csv-parse@npm:^5.6.0":
+  version: 5.6.0
+  resolution: "csv-parse@npm:5.6.0"
+  checksum: 173e176bdaf212bab37d0f6d39a06d039d24a1c0ee40b9f1023ebf8b36095934807deeb493c0fb58592b39b0682ccd0be5c9e8d2b137c08807e7031595ea7a51
   languageName: node
   linkType: hard
 
@@ -3016,7 +3017,7 @@ __metadata:
   resolution: "docker-setup-qemu@workspace:."
   dependencies:
     "@actions/core": ^1.11.1
-    "@docker/actions-toolkit": ^0.35.0
+    "@docker/actions-toolkit": ^0.49.0
     "@types/node": ^20.12.12
     "@typescript-eslint/eslint-plugin": ^7.9.0
     "@typescript-eslint/parser": ^7.9.0
@@ -6413,7 +6414,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:^3.3.2, uuid@npm:^3.3.3":
+"uuid@npm:^3.3.2":
   version: 3.4.0
   resolution: "uuid@npm:3.4.0"
   bin:
