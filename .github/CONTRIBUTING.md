@@ -14,7 +14,7 @@ to the public under the [project's open source license](LICENSE).
 5. Format code and build javascript artifacts: `docker buildx bake pre-checkin`
 6. Validate all code has correctly formatted and built: `docker buildx bake validate`
 7. Push to your fork and [submit a pull request](https://github.com/docker/setup-qemu-action/compare)
-8. Pat your self on the back and wait for your pull request to be reviewed and merged.
+8. Pat yourself on the back and wait for your pull request to be reviewed and merged.
 
 Here are a few things you can do that will increase the likelihood of your pull request being accepted:
 
