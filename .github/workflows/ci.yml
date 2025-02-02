@@ -26,9 +26,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        local-cache-path:
+        cache-image-path:
           - /tmp/cache
-          # - ''
 
     steps:
       -
@@ -39,7 +38,7 @@ jobs:
         id: qemu
         uses: ./
         with:
-          local-cache-path: ${{ matrix.local-cache-path }}
+          cache-image-path: ${{ matrix.cache-image-path }}
       -
         name: Available platforms
         run: echo ${{ steps.qemu.outputs.platforms }}

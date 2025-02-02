@@ -20,9 +20,9 @@ actionsToolkit.run(
       await Docker.printInfo();
     });
 
-    if (input.localCachePath !== '') {
+    if (input.cacheImagePath !== '') {
       await core.group(`Pulling binfmt Docker image with local cache`, async () => {
-        await loadDockerImageFromCache(input.localCachePath, input.image);
+        await loadDockerImageFromCache(input.cacheImagePath, input.image);
       });
     } else {
       await core.group(`Pulling binfmt Docker image`, async () => {
@@ -68,9 +68,9 @@ actionsToolkit.run(
   // post
   async () => {
     const input: context.Inputs = context.getInputs();
-    if (input.localCachePath !== '') {
+    if (input.cacheImagePath !== '') {
       await core.group(`Saving binfmt Docker image`, async () => {
-        await saveDockerImageToCache(input.localCachePath, input.image);
+        await saveDockerImageToCache(input.cacheImagePath, input.image);
       });
     }
   }
