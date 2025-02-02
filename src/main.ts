@@ -21,7 +21,7 @@ actionsToolkit.run(
     });
 
     if (input.localCachePath !== '') {
-      await core.group(`Pulling binfmt Docker image`, async () => {
+      await core.group(`Pulling binfmt Docker image with local cache`, async () => {
         await loadDockerImageFromCache(input.localCachePath, input.image);
       });
     } else {
