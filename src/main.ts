@@ -15,11 +15,6 @@ actionsToolkit.run(
   async () => {
     const input: context.Inputs = context.getInputs();
 
-    // 디버깅을 위한 로그 추가
-    core.info(`Local cache path: "${input.localCachePath}"`);
-    core.info(`Local cache path type: ${typeof input.localCachePath}`);
-    core.info(`Is empty string: ${input.localCachePath === ''}`);
-
     await core.group(`Docker info`, async () => {
       await Docker.printVersion();
       await Docker.printInfo();
