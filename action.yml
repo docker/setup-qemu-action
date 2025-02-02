@@ -19,6 +19,12 @@ inputs:
     description: 'Cache binfmt image to GitHub Actions cache backend'
     default: 'true'
     required: false
+  local-cache-path:
+    description: >
+      Local path to store the binfmt image. Using this enables local caching instead of GitHub Actions cache.
+      Note: The "latest" tag won't auto-update - delete the cached file to fetch updates.
+    default: ''
+    required: false
 
 outputs:
   platforms:

@@ -5,12 +5,14 @@ export interface Inputs {
   image: string;
   platforms: string;
   cacheImage: boolean;
+  localCachePath: string;
 }
 
 export function getInputs(): Inputs {
   return {
     image: core.getInput('image') || 'docker.io/tonistiigi/binfmt:latest',
     platforms: Util.getInputList('platforms').join(',') || 'all',
-    cacheImage: core.getBooleanInput('cache-image')
+    cacheImage: core.getBooleanInput('cache-image'),
+    localCachePath: core.getInput('local-cache-path') || ''
   };
 }

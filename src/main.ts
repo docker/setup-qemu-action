@@ -3,6 +3,7 @@ import * as core from '@actions/core';
 import * as actionsToolkit from '@docker/actions-toolkit';
 
 import {Docker} from '@docker/actions-toolkit/lib/docker/docker';
+import {loadDockerImageFromCache, saveDockerImageToCache} from './local-cache';
 
 interface Platforms {
   supported: string[];
@@ -19,9 +20,15 @@ actionsToolkit.run(
       await Docker.printInfo();
     });
 
-    await core.group(`Pulling binfmt Docker image`, async () => {
-      await Docker.pull(input.image, input.cacheImage);
-    });
+    if (input.localCachePath !== '') {
+      await core.group(`Pulling binfmt Docker image`, async () => {
+        await loadDockerImageFromCache(input.localCachePath, input.image);
+      });
+    } else {
+      await core.group(`Pulling binfmt Docker image`, async () => {
+        await Docker.pull(input.image, input.cacheImage);
+      });
+    }
 
     await core.group(`Image info`, async () => {
       await Docker.getExecOutput(['image', 'inspect', input.image], {
@@ -56,5 +63,15 @@ actionsToolkit.run(
         core.setOutput('platforms', platforms.supported.join(','));
       });
     });
+  },
+
+  // post
+  async () => {
+    const input: context.Inputs = context.getInputs();
+    if (input.localCachePath !== '') {
+      await core.group(`Saving binfmt Docker image`, async () => {
+        await saveDockerImageToCache(input.localCachePath, input.image);
+      });
+    }
   }
 );

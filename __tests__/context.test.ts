@@ -23,6 +23,7 @@ describe('getInputs', () => {
         image: 'docker.io/tonistiigi/binfmt:latest',
         platforms: 'all',
         cacheImage: true,
+        localCachePath: ''
       } as context.Inputs
     ],
     [
@@ -36,6 +37,7 @@ describe('getInputs', () => {
         image: 'docker/binfmt:latest',
         platforms: 'arm64,riscv64,arm',
         cacheImage: false,
+        localCachePath: ''
       } as context.Inputs
     ],
     [
@@ -48,6 +50,21 @@ describe('getInputs', () => {
         image: 'docker.io/tonistiigi/binfmt:latest',
         platforms: 'arm64,riscv64,arm',
         cacheImage: true,
+        localCachePath: ''
+      } as context.Inputs
+    ],
+    [
+      3,
+      new Map<string, string>([
+        ['platforms', 'arm64'],
+        ['cache-image', 'false'],
+        ['local-cache-path', '/tmp/cache'],
+      ]),
+      {
+        image: 'docker.io/tonistiigi/binfmt:latest',
+        platforms: 'arm64',
+        cacheImage: false,
+        localCachePath: '/tmp/cache'
       } as context.Inputs
     ]
   ])(
