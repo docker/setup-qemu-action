@@ -33,6 +33,16 @@ actionsToolkit.run(
       });
     });
 
+    await core.group(`Binfmt version`, async () => {
+      await Docker.getExecOutput(['run', '--rm', '--privileged', input.image, '--version'], {
+        ignoreReturnCode: true
+      }).then(res => {
+        if (res.stderr.length > 0 && res.exitCode != 0) {
+          throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
+        }
+      });
+    });
+
     await core.group(`Installing QEMU static binaries`, async () => {
       await Docker.getExecOutput(['run', '--rm', '--privileged', input.image, '--install', input.platforms], {
         ignoreReturnCode: true
