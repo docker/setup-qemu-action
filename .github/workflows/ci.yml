@@ -26,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cache-image-path:
+        cache-image-dir:
           - /tmp/cache
 
     steps:
@@ -38,7 +38,7 @@ jobs:
         id: qemu
         uses: ./
         with:
-          cache-image-path: ${{ matrix.cache-image-path }}
+          cache-image-dir: ${{ matrix.cache-image-dir }}
       -
         name: Available platforms
         run: echo ${{ steps.qemu.outputs.platforms }}
