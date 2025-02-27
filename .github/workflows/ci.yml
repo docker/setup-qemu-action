@@ -102,3 +102,22 @@ jobs:
       -
         name: Available platforms
         run: echo ${{ steps.qemu.outputs.platforms }}
+
+  version:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - tonistiigi/binfmt:master
+          - tonistiigi/binfmt:latest
+          - tonistiigi/binfmt:qemu-v7.0.0
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Set up QEMU
+        uses: ./
+        with:
+          image: ${{ matrix.image }}
