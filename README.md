@@ -35,6 +35,19 @@ jobs:
         uses: docker/setup-qemu-action@v3
 ```
 
+> [!NOTE]
+> If you are using [`docker/setup-buildx-action`](https://github.com/docker/setup-buildx-action),
+> this action should come before it:
+> 
+> ```yaml
+>     -
+>       name: Set up QEMU
+>       uses: docker/setup-qemu-action@v3
+>     -
+>       name: Set up Docker Buildx
+>       uses: docker/setup-buildx-action@v3
+> ```
+
 ## Customizing
 
 ### inputs
