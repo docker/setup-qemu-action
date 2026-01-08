@@ -33,6 +33,26 @@ jobs:
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64, i386
+      -
+        name: Create an example binary for AArch64
+        run: |
+          go mod init hello
+          cat << EOL > hello.go
+          package main
+
+          func main() {
+            println("Hello, AArch64!")
+          }
+          EOL
+          GOARCH=arm64 go build hello.go
+      -
+        name: This would fail without docker/setup-qemu-action
+        run: ./hello
+      -
+        name: You can also run images from other platforms
+        run: docker run --platform linux/i386 hello-world
 ```
 
 > [!NOTE]
