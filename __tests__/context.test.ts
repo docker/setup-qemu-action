@@ -1,6 +1,6 @@
 import {beforeEach, describe, expect, test} from 'vitest';
 
-import * as context from '../src/context';
+import * as context from '../src/context.js';
 
 describe('getInputs', () => {
   beforeEach(() => {
