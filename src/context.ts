@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import {Util} from '@docker/actions-toolkit/lib/util';
+import {Util} from '@docker/actions-toolkit/lib/util.js';
 
 export interface Inputs {
   image: string;

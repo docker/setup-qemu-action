@@ -1,8 +1,9 @@
-import * as context from './context';
 import * as core from '@actions/core';
 import * as actionsToolkit from '@docker/actions-toolkit';
 
-import {Docker} from '@docker/actions-toolkit/lib/docker/docker';
+import {Docker} from '@docker/actions-toolkit/lib/docker/docker.js';
+
+import * as context from './context.js';
 
 interface Platforms {
   supported: string[];
