@@ -25,6 +25,6 @@ outputs:
     description: 'Available platforms (comma separated)'
 
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
   post: 'dist/index.js'
