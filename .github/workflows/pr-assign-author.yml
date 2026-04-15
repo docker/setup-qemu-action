@@ -4,14 +4,14 @@ permissions:
   contents: read
 
 on:
-  pull_request_target: # zizmor: ignore[dangerous-triggers] safe to use without checkout
+  pull_request_target:
     types:
       - opened
       - reopened
 
 jobs:
   run:
-    uses: crazy-max/.github/.github/workflows/pr-assign-author.yml@d89fe92d808a15e2b2ed5cdb62db7c172c31410d # v1.6.0
+    uses: crazy-max/.github/.github/workflows/pr-assign-author.yml@1b673f36fad86812f538c1df9794904038a23cbf
     permissions:
       contents: read
       pull-requests: write
