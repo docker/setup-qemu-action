@@ -35,6 +35,36 @@ jobs:
         uses: docker/setup-qemu-action@v4
 ```
 
+### Multi-architecture build example
+
+```yaml
+name: build
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: user/app:latest
+```
+
 > [!NOTE]
 > If you are using [`docker/setup-buildx-action`](https://github.com/docker/setup-buildx-action),
 > this action should come before it:
