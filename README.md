@@ -86,6 +86,7 @@ The following inputs can be used as `step.with` keys:
 |---------------|--------|-------------------------------------------------------------------------------|----------------------------------------------------|
 | `image`       | String | [`tonistiigi/binfmt:latest`](https://hub.docker.com/r/tonistiigi/binfmt/tags) | QEMU static binaries Docker image                  |
 | `platforms`   | String | `all`                                                                         | Platforms to install (e.g., `arm64,riscv64,arm`)   |
+| `reset`       | Bool   | `false`                                                                       | Uninstall current emulators before installation    |
 | `cache-image` | Bool   | `true`                                                                        | Cache binfmt image to GitHub Actions cache backend |
 
 ### outputs
