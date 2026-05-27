@@ -35,6 +35,34 @@ jobs:
         uses: docker/setup-qemu-action@v4
 ```
 
+This action registers QEMU emulators with `binfmt_misc`, so later steps can run
+containers built for another architecture on the GitHub-hosted runner.
+
+```yaml
+name: run-cross-platform-container
+
+on:
+  workflow_dispatch:
+
+jobs:
+  qemu-example:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v4
+      -
+        name: Run an arm64 container
+        run: docker run --rm --platform linux/arm64 alpine uname -m
+```
+
+The command above prints `aarch64` even though the job itself is running on
+`ubuntu-latest`.
+
+> [!TIP]
+> `setup-qemu-action` enables user-mode emulation for registered platforms. It
+> does not install `qemu-system-*` tools or add `qemu-*` binaries to your PATH.
+
 > [!NOTE]
 > If you are using [`docker/setup-buildx-action`](https://github.com/docker/setup-buildx-action),
 > this action should come before it:
