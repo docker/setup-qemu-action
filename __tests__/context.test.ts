@@ -17,11 +17,13 @@ describe('getInputs', () => {
     [
       0,
       new Map<string, string>([
+        ['reset', 'false'],
         ['cache-image', 'true'],
       ]),
       {
         image: 'docker.io/tonistiigi/binfmt:latest',
         platforms: 'all',
+        reset: false,
         cacheImage: true,
       }
     ],
@@ -30,11 +32,13 @@ describe('getInputs', () => {
       new Map<string, string>([
         ['image', 'docker/binfmt:latest'],
         ['platforms', 'arm64,riscv64,arm'],
+        ['reset', 'false'],
         ['cache-image', 'false'],
       ]),
       {
         image: 'docker/binfmt:latest',
         platforms: 'arm64,riscv64,arm',
+        reset: false,
         cacheImage: false,
       }
     ],
@@ -42,11 +46,13 @@ describe('getInputs', () => {
       2,
       new Map<string, string>([
         ['platforms', 'arm64, riscv64, arm '],
+        ['reset', 'false'],
         ['cache-image', 'true'],
       ]),
       {
         image: 'docker.io/tonistiigi/binfmt:latest',
         platforms: 'arm64,riscv64,arm',
+        reset: false,
         cacheImage: true,
       }
     ]
