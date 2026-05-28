@@ -2822,7 +2822,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "docker-setup-qemu@workspace:."
   dependencies:
-    "@actions/core": "npm:^3.0.0"
+    "@actions/core": "npm:^3.0.1"
     "@docker/actions-toolkit": "npm:^0.91.0"
     "@eslint/js": "npm:^9.39.3"
     "@types/node": "npm:^24.11.0"
