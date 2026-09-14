@@ -28,8 +28,8 @@ actionsToolkit.run(
       await Docker.getExecOutput(['image', 'inspect', input.image], {
         ignoreReturnCode: true
       }).then(res => {
-        if (res.stderr.length > 0 && res.exitCode != 0) {
-          throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
+        if (res.exitCode != 0) {
+          throw new Error(`Failed to inspect image ${input.image}: ${Docker.getErrorMessage(res.stderr)}`);
         }
       });
     });
@@ -38,8 +38,8 @@ actionsToolkit.run(
       await Docker.getExecOutput(['run', '--rm', '--privileged', input.image, '--version'], {
         ignoreReturnCode: true
       }).then(res => {
-        if (res.stderr.length > 0 && res.exitCode != 0) {
-          throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
+        if (res.exitCode != 0) {
+          throw new Error(`Failed to get binfmt version: ${Docker.getErrorMessage(res.stderr)}`);
         }
       });
     });
@@ -49,8 +49,8 @@ actionsToolkit.run(
         await Docker.getExecOutput(['run', '--rm', '--privileged', input.image, '--uninstall', 'qemu-*'], {
           ignoreReturnCode: true
         }).then(res => {
-          if (res.stderr.length > 0 && res.exitCode != 0) {
-            throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
+          if (res.exitCode != 0) {
+            throw new Error(`Failed to uninstall current emulators: ${Docker.getErrorMessage(res.stderr)}`);
           }
         });
       });
@@ -60,8 +60,8 @@ actionsToolkit.run(
       await Docker.getExecOutput(['run', '--rm', '--privileged', input.image, '--install', input.platforms], {
         ignoreReturnCode: true
       }).then(res => {
-        if (res.stderr.length > 0 && res.exitCode != 0) {
-          throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
+        if (res.exitCode != 0) {
+          throw new Error(`Failed to install QEMU static binaries: ${Docker.getErrorMessage(res.stderr)}`);
         }
       });
     });
@@ -71,8 +71,8 @@ actionsToolkit.run(
         ignoreReturnCode: true,
         silent: true
       }).then(res => {
-        if (res.stderr.length > 0 && res.exitCode != 0) {
-          throw new Error(res.stderr.match(/(.*)\s*$/)?.[0]?.trim() ?? 'unknown error');
+        if (res.exitCode != 0) {
+          throw new Error(`Failed to extract available platforms: ${Docker.getErrorMessage(res.stderr)}`);
         }
         const platforms: Platforms = JSON.parse(res.stdout.trim());
         core.info(`${platforms.supported.join(',')}`);
